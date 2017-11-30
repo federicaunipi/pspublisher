@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.pacesys:openstack4j:withdeps:3.1.0">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/pacesys/openstack4j/3.1.0/openstack4j-3.1.0-withdeps.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/pacesys/openstack4j/3.1.0/openstack4j-3.1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/pacesys/openstack4j/3.1.0/openstack4j-3.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
