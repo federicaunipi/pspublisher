@@ -30,13 +30,13 @@ public class Publisher {
 		NetworkIF iface = NetIFHelper.getInterfaceByName(cli.iface);
 
 		//Instantiate the Bitrate Poller setting the interval and queried interface
-		BitrateMeter bitrateMeter = new BitrateMeter(1000L, iface);
+		BitrateMeter bitrateMeter = new BitrateMeter(cli.interval, iface);
 		ProcessingTimeMeter psMeter = new ProcessingTimeUsingBitrateMeter(bitrateMeter);
 
 		GnocchiAPI gnocchi = new GnocchiAPI(cli.ip, cli.username, cli.password, cli.projectId, cli.domain);
 
 		//Add a task to the scheduler: poll and print the bitrate
-		scheduler.scheduleAtFixedRate(() -> gnocchi.pushMeasurement(new Measurement(psMeter.getProcessingTime())), 0L, cli.interval, TimeUnit.MILLISECONDS);
+		scheduler.scheduleWithFixedDelay(() -> gnocchi.pushMeasurement(new Measurement(psMeter.getProcessingTime())), 0L, cli.interval, TimeUnit.MILLISECONDS);
 		//scheduler.scheduleAtFixedRate(() -> System.out.println(new Measurement(psMeter.getProcessingTime())), 0L, cli.interval, TimeUnit.MILLISECONDS);
 
 	}
