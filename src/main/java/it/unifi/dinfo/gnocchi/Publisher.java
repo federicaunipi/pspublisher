@@ -1,8 +1,6 @@
 package it.unifi.dinfo.gnocchi;
 
-import it.unifi.dinfo.gnocchi.meters.BitrateMeter;
-import it.unifi.dinfo.gnocchi.meters.ProcessingTimeMeter;
-import it.unifi.dinfo.gnocchi.meters.ProcessingTimeUsingBitrateMeter;
+import it.unifi.dinfo.gnocchi.meters.*;
 import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,13 +28,20 @@ public class Publisher {
 		NetworkIF iface = NetIFHelper.getInterfaceByName(cli.iface);
 
 		//Instantiate the Bitrate Poller setting the interval and queried interface
-		BitrateMeter bitrateMeter = new BitrateMeter(cli.interval, iface);
+		BitrateMeter bitrateMeter = new SlackBitrateMeter(iface);
 		ProcessingTimeMeter psMeter = new ProcessingTimeUsingBitrateMeter(bitrateMeter);
 
 		GnocchiAPI gnocchi = new GnocchiAPI(cli.ip, cli.username, cli.password, cli.projectId, cli.domain);
 
 		//Add a task to the scheduler: poll and print the bitrate
-		scheduler.scheduleWithFixedDelay(() -> gnocchi.pushMeasurement(new Measurement(psMeter.getProcessingTime())), 0L, cli.interval, TimeUnit.MILLISECONDS);
+		try {
+			scheduler.scheduleWithFixedDelay(() -> gnocchi.pushMeasurement(new Measurement(psMeter
+					.getProcessingTime())), 0L, cli.interval, TimeUnit.MILLISECONDS);
+		}
+		catch (FirstIterationException e){
+			logger.info("First iteration, waiting "+cli.interval+ "ms for gathering data");
+		}
+
 		//scheduler.scheduleAtFixedRate(() -> System.out.println(new Measurement(psMeter.getProcessingTime())), 0L, cli.interval, TimeUnit.MILLISECONDS);
 
 	}
