@@ -1,5 +1,6 @@
 package it.unifi.dinfo.gnocchi;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -51,7 +52,11 @@ public class GnocchiAPI {
 		measurements.add(measurementNode);
 		resource.set(CliHelper.getCli().metric,measurements);
 		resources.set(CliHelper.getCli().instance, resource);
-		logger.debug(measurement.toString());
+		try {
+			logger.debug(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resources));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 		return Entity.json(resources);
 	}
 }
