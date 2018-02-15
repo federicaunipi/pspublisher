@@ -34,6 +34,8 @@ java -jar vnf_simulator.jar
 * \-\-username
   Openstack username
   Default: lash5g
+
+
 \*  **Required parameters**
 
 For instance:
