@@ -26,6 +26,7 @@ java -jar vnf_simulator.jar
 * \-\-password
   Openstack password
   Default: lash5g
+
 *\-\-proc_capacity
   Processing capacity in Mbit/s
   Default: 1.0
