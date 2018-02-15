@@ -27,7 +27,7 @@ public class SlackBitrateMeter implements BitrateMeter {
 	}
 
 	public static String scale(double value) {
-		String[] suffix = {"B/s", "KB/s", "MB/s", "GB/s", "TB/s", "PB/s"};
+		String[] suffix = {"b/s", "Kb/s", "Mb/s", "Gb/s", "Tb/s", "Pb/s"};
 		int index;
 		if (value < 1)
 			index = 0;
@@ -39,7 +39,10 @@ public class SlackBitrateMeter implements BitrateMeter {
 	public Double getBitrate() {
 		Double bitrate;
 		iface.updateNetworkStats();
-		Long bytesRecv = iface.getBytesRecv();
+		// Bits
+		Long bytesRecv = iface.getBytesRecv()*8;
+		// Bytes
+		//Long bytesRecv = iface.getBytesRecv();
 		long t2 = System.currentTimeMillis();
 		double delta = (t2 - t1) / Math.pow(10, 3);
 		bitrate = (bytesRecv - latestBytesReceived) / delta;
@@ -48,5 +51,4 @@ public class SlackBitrateMeter implements BitrateMeter {
 		logger.info(scale(bitrate));
 		return bitrate;
 	}
-
 }

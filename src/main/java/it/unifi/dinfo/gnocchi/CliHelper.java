@@ -9,12 +9,12 @@ public class CliHelper {
 
 	@Parameter(names = {"--interval", "-i"}, description = "Interval in milliseconds")
 	public Long interval = 60 * 1000L;
-	@Parameter(names = {"--ip"}, description = "Openstack host address")
-	public String ip = "192.168.9.131";
+	@Parameter(names = {"--ip"}, required = true, description = "Openstack host address")
+	public String ip;
 	@Parameter(names = {"--username"}, description = "Openstack username")
-	public String username = "admin";
+	public String username = "lash5g";
 	@Parameter(names = {"--password"}, description = "Openstack password")
-	public String password = "password";
+	public String password = "lash5g";
 	@Parameter(names = {"--domain"}, description = "Domain name")
 	public String domain = "default";
 	@Parameter(names = {"--project"}, required = true, description = "Project id (not the name)")
@@ -23,7 +23,7 @@ public class CliHelper {
 	public String instance;
 	@Parameter(names = {"--iface"}, required = true, description = "Interface name")
 	public String iface;
-	@Parameter(names = {"--proc_capacity"}, description = "Processing capacity in MB/s", validateWith = PositiveDoubleValidator.class)
+	@Parameter(names = {"--proc_capacity"}, description = "Processing capacity in Mbit/s", validateWith = PositiveDoubleValidator.class)
 	public Double proccessing_capacity = 1.0;
 	@Parameter(names = {"--metric"}, description = "The name of the metric")
 	public String metric = "processing_time";

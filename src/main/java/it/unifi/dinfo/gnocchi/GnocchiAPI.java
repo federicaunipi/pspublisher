@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.glassfish.jersey.client.JerseyClientBuilder;
 import org.glassfish.jersey.client.JerseyWebTarget;
+import org.openstack4j.api.exceptions.ConnectionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +43,27 @@ public class GnocchiAPI {
 		else {
 			logger.debug(resp.toString());
 		}
+	}
+
+	public boolean checkIfInstanceExists(){
+		try {
+			Response response = gnocchiClient.path("resource/vnf").path(CliHelper.getCli().instance).request().get();
+			return response.getStatus() == 200;
+		}
+		catch (ConnectionException e){
+			logger.error(e.getMessage());
+		}
+		return false;
+	}
+
+	public void pushProcessingCapacity(){
+		Double proccessing_capacity = CliHelper.getCli().proccessing_capacity;
+		String instance = CliHelper.getCli().instance;
+		//http://192.168.9.121:8041/v1/resource/instance
+		ObjectNode vnf = mapper.createObjectNode();
+		vnf.put("processing_capacity", CliHelper.getCli().proccessing_capacity);
+		Entity<ObjectNode> json = Entity.json(vnf);
+		Response resp = gnocchiClient.path("resource/vnf").path(instance).request().post(json);
 	}
 
 	private Entity createEntity(Measurement measurement){

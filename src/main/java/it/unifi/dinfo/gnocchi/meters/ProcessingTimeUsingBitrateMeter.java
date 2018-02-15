@@ -11,7 +11,7 @@ public class ProcessingTimeUsingBitrateMeter implements ProcessingTimeMeter {
 
 	@Override
 	public double getProcessingTime(){
-		double proccessing_capacity = CliHelper.getCli().proccessing_capacity;	//In MB/s
+		double proccessing_capacity = CliHelper.getCli().proccessing_capacity;	//In Mbit/s
 		return bitrateMeter.getBitrate()/(proccessing_capacity*1000*1000);
 	}
 }

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Publisher {
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws InterruptedException {
 		//Logger configuration
 
 		PropertyConfigurator.configure("log4j.properties");
@@ -27,11 +27,18 @@ public class Publisher {
 		//Get interface by name
 		NetworkIF iface = NetIFHelper.getInterfaceByName(cli.iface);
 
+
+
+		GnocchiAPI gnocchi = new GnocchiAPI(cli.ip, cli.username, cli.password, cli.projectId, cli.domain);
+
+		while(!gnocchi.checkIfInstanceExists()){
+			logger.error(String.format("Instance %s not found on dc %s. Infinite retry loop. Waiting for 10 seconds.", CliHelper.getCli().instance, CliHelper.getCli().ip));
+			Thread.sleep(10_000);
+		}
+
 		//Instantiate the Bitrate Poller setting the interval and queried interface
 		BitrateMeter bitrateMeter = new SlackBitrateMeter(iface);
 		ProcessingTimeMeter psMeter = new ProcessingTimeUsingBitrateMeter(bitrateMeter);
-
-		GnocchiAPI gnocchi = new GnocchiAPI(cli.ip, cli.username, cli.password, cli.projectId, cli.domain);
 
 		//Add a task to the scheduler: poll and print the bitrate
 		try {
