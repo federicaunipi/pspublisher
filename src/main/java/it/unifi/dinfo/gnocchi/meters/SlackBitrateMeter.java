@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 import oshi.hardware.NetworkIF;
 
 public class SlackBitrateMeter implements BitrateMeter {
-	Long t1;
-	Long latestBytesReceived;
+	private long t1;
+	private long latestBytesReceived;
 	Logger logger = LoggerFactory.getLogger(getClass());
 	private NetworkIF iface;
 
@@ -15,7 +15,8 @@ public class SlackBitrateMeter implements BitrateMeter {
 	public SlackBitrateMeter(NetworkIF iface) {
 		this.iface = iface;
 		iface.updateNetworkStats();
-		latestBytesReceived = iface.getBytesRecv();
+		//latestBytesReceived = iface.getBytesRecv();
+		latestBytesReceived = iface.getBytesRecv() * 8;
 		t1 = System.currentTimeMillis();
 		logger.info("Initialization");
 		logger.debug("First value will be sent in "+CliHelper.getCli().interval+"ms");
@@ -37,15 +38,14 @@ public class SlackBitrateMeter implements BitrateMeter {
 	}
 
 	public Double getBitrate() {
-		Double bitrate;
 		iface.updateNetworkStats();
 		// Bits
-		Long bytesRecv = iface.getBytesRecv()*8;
+		long bytesRecv = iface.getBytesRecv()*8;
 		// Bytes
 		//Long bytesRecv = iface.getBytesRecv();
 		long t2 = System.currentTimeMillis();
 		double delta = (t2 - t1) / Math.pow(10, 3);
-		bitrate = (bytesRecv - latestBytesReceived) / delta;
+		double bitrate = (bytesRecv - latestBytesReceived) / delta;
 		latestBytesReceived = bytesRecv;
 		t1 = t2;
 		logger.info(scale(bitrate));

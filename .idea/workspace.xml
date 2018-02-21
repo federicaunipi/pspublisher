@@ -7,18 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bca67fd-05e9-4d77-8ba0-8638393302b0" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jcabi_jcabi_aspects_0_22_5.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jcabi_jcabi_log_0_18.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjrt_1_8_7.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pspublisher_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/pspublisher_jar.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_jcabi_jcabi_aspects_0_22.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_jcabi_jcabi_log_0_17_1.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjrt_1_8_4.xml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/log4j.properties" afterPath="$PROJECT_DIR$/log4j.properties" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/pspublisher.iml" afterPath="$PROJECT_DIR$/pspublisher.iml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/GnocchiAPI.java" afterPath="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/GnocchiAPI.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/Publisher.java" afterPath="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/Publisher.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/meters/SlackBitrateMeter.java" afterPath="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/meters/SlackBitrateMeter.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -31,104 +22,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Publisher.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Publisher.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/Publisher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="244">
+              <caret line="33" column="35" lean-forward="true" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="log4j.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/log4j.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="57" lean-forward="true" selection-start-line="6" selection-start-column="57" selection-end-line="6" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="51" column="21" lean-forward="false" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PropertyConfigurator.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.17/log4j-1.2.17.jar!/org/apache/log4j/PropertyConfigurator.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="324" column="0" lean-forward="false" selection-start-line="324" selection-start-column="0" selection-end-line="324" selection-end-column="0" />
-              <folding>
-                <marker date="1475044162828" expanded="false" signature="0:104" ph="/.../" />
-                <marker date="1475044162828" expanded="false" signature="140:1086" ph="..." />
-                <marker date="1475044162828" expanded="true" signature="2374:2381" ph="{}" />
-                <marker date="1475044162828" expanded="true" signature="2462:3618" ph="{...}" />
-                <marker date="1475044162828" expanded="true" signature="3676:3783" ph="{...}" />
-                <marker date="1475044162828" expanded="true" signature="3833:3935" ph="{...}" />
-                <marker date="1475044162828" expanded="true" signature="3995:4099" ph="{...}" />
-                <marker date="1475044162828" expanded="true" signature="4157:4260" ph="{...}" />
-                <marker date="1475044162828" expanded="false" signature="4325:4336" ph=" { " />
-                <marker date="1475044162828" expanded="false" signature="4378:4384" ph=" }" />
-                <marker date="1475044162828" expanded="true" signature="4462:4591" ph="{...}" />
-                <marker date="1475044162828" expanded="true" signature="4672:5895" ph="{...}" />
-                <marker date="1475044162828" expanded="true" signature="5978:6515" ph="{...}" />
-                <marker date="1475044162828" expanded="true" signature="6588:7978" ph="{...}" />
-                <marker date="1475044162828" expanded="true" signature="8040:8511" ph="{...}" />
-                <marker date="1475044162828" expanded="true" signature="8590:9220" ph="{...}" />
-                <marker date="1475044162828" expanded="true" signature="9309:11659" ph="{...}" />
-                <marker date="1475044162828" expanded="true" signature="11744:12200" ph="{...}" />
-                <marker date="1475044162828" expanded="true" signature="12309:13682" ph="{...}" />
-                <marker date="1475044162828" expanded="true" signature="13750:17391" ph="{...}" />
-                <marker date="1475044162828" expanded="true" signature="17518:18381" ph="{...}" />
-                <marker date="1475044162828" expanded="true" signature="18471:21011" ph="{...}" />
-                <marker date="1475044162828" expanded="false" signature="21052:21063" ph=" { " />
-                <marker date="1475044162828" expanded="false" signature="21111:21117" ph=" }" />
-                <marker date="1475044162828" expanded="false" signature="21156:21167" ph=" { " />
-                <marker date="1475044162828" expanded="false" signature="21208:21214" ph=" }" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CliHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/CliHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="26" column="33" lean-forward="false" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProcessingTimeUsingBitrateMeter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/meters/ProcessingTimeUsingBitrateMeter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="89" lean-forward="false" selection-start-line="13" selection-start-column="89" selection-end-line="13" selection-end-column="89" />
-              <folding>
-                <element signature="e#255#256#0" expanded="true" />
-                <element signature="e#292#293#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BitrateMeter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/meters/BitrateMeter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -136,30 +37,18 @@
       <file leaf-file-name="SlackBitrateMeter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/meters/SlackBitrateMeter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="43" column="16" lean-forward="false" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
+            <state relative-caret-position="561">
+              <caret line="45" column="14" lean-forward="false" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GnocchiAPI.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GnocchiAPI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/GnocchiAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="56" column="9" lean-forward="false" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="32" lean-forward="false" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+            <state relative-caret-position="856">
+              <caret line="84" column="56" lean-forward="true" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -202,14 +91,14 @@
         <option value="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/FirstIterationException.java" />
         <option value="$PROJECT_DIR$/src/test/java/it/unifi/dinfo/gnocchi/GnocchiAPITest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config" />
-        <option value="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/meters/SlackBitrateMeter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/CliHelper.java" />
         <option value="$PROJECT_DIR$/config" />
-        <option value="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/Publisher.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/meters/ProcessingTimeUsingBitrateMeter.java" />
         <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/GnocchiAPI.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/CliHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/Publisher.java" />
+        <option value="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/meters/SlackBitrateMeter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/GnocchiAPI.java" />
       </list>
     </option>
   </component>
@@ -632,7 +521,7 @@
       <workItem from="1516890580608" duration="11000" />
       <workItem from="1518627312326" duration="2954000" />
       <workItem from="1518681078261" duration="9575000" />
-      <workItem from="1519217226499" duration="2420000" />
+      <workItem from="1519217226499" duration="8496000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1512039088126</created>
@@ -683,7 +572,21 @@
       <option name="project" value="LOCAL" />
       <updated>1519217766225</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixed PATCH">
+      <created>1519219721823</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1519219721823</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Do not create metrics by yourself">
+      <created>1519222428830</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1519222428830</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -716,7 +619,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32684000" />
+    <option name="totallyTimeSpent" value="38760000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1094" extended-state="6" />
@@ -772,7 +675,8 @@
     <MESSAGE value="Interval is used also for the measurement interval&#10;For example:&#10;30s -&gt; t2 = t1 + 30s&#10;The measurement will be averaged on that interval" />
     <MESSAGE value="Fixed error (t1 &lt;- t2 missing)" />
     <MESSAGE value="Fixed PATCH" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed PATCH" />
+    <MESSAGE value="Do not create metrics by yourself" />
+    <option name="LAST_COMMIT_MESSAGE" value="Do not create metrics by yourself" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -812,8 +716,8 @@
         <state relative-caret-position="238">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <element signature="e#255#256#0" expanded="true" />
-            <element signature="e#292#293#0" expanded="true" />
+            <element signature="e#255#256#0" expanded="false" />
+            <element signature="e#292#293#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -861,7 +765,7 @@
         <state relative-caret-position="476">
           <caret line="38" column="58" lean-forward="false" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="58" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -887,8 +791,8 @@
         <state relative-caret-position="68">
           <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding>
-            <element signature="e#255#256#0" expanded="true" />
-            <element signature="e#292#293#0" expanded="true" />
+            <element signature="e#255#256#0" expanded="false" />
+            <element signature="e#292#293#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -944,7 +848,7 @@
         <state relative-caret-position="476">
           <caret line="38" column="58" lean-forward="false" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="58" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -989,8 +893,8 @@
         <state relative-caret-position="68">
           <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding>
-            <element signature="e#255#256#0" expanded="true" />
-            <element signature="e#292#293#0" expanded="true" />
+            <element signature="e#255#256#0" expanded="false" />
+            <element signature="e#292#293#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1038,7 +942,7 @@
         <state relative-caret-position="476">
           <caret line="38" column="58" lean-forward="false" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="58" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1121,14 +1025,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/CliHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="26" column="33" lean-forward="false" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_25/src.zip!/java/net/URLClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
@@ -1137,9 +1033,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/meters/ProcessingTimeUsingBitrateMeter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="89" lean-forward="false" selection-start-line="13" selection-start-column="89" selection-end-line="13" selection-end-column="89" />
+          <folding>
+            <element signature="e#255#256#0" expanded="false" />
+            <element signature="e#292#293#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="51" column="21" lean-forward="false" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="57" lean-forward="false" selection-start-line="6" selection-start-column="57" selection-end-line="6" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.17/log4j-1.2.17.jar!/org/apache/log4j/PropertyConfigurator.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
+        <state relative-caret-position="304">
           <caret line="324" column="0" lean-forward="false" selection-start-line="324" selection-start-column="0" selection-end-line="324" selection-end-column="0" />
           <folding>
             <marker date="1475044162828" expanded="false" signature="0:104" ph="/.../" />
@@ -1172,58 +1095,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/meters/ProcessingTimeUsingBitrateMeter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/CliHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="89" lean-forward="false" selection-start-line="13" selection-start-column="89" selection-end-line="13" selection-end-column="89" />
-          <folding>
-            <element signature="e#255#256#0" expanded="true" />
-            <element signature="e#292#293#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="9" column="84" lean-forward="false" selection-start-line="9" selection-start-column="72" selection-end-line="9" selection-end-column="84" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/meters/SlackBitrateMeter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="43" column="16" lean-forward="false" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/GnocchiAPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="56" column="9" lean-forward="false" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="51" column="21" lean-forward="false" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="57" lean-forward="true" selection-start-line="6" selection-start-column="57" selection-end-line="6" selection-end-column="57" />
+        <state relative-caret-position="561">
+          <caret line="45" column="14" lean-forward="false" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/Publisher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="244">
+          <caret line="33" column="35" lean-forward="true" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/unifi/dinfo/gnocchi/GnocchiAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="856">
+          <caret line="84" column="56" lean-forward="true" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -11,6 +11,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Publisher {
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	public static void main(String args[]) throws InterruptedException {
 		//Logger configuration
@@ -26,7 +27,6 @@ public class Publisher {
 
 		//Get interface by name
 		NetworkIF iface = NetIFHelper.getInterfaceByName(cli.iface);
-
 
 
 		GnocchiAPI gnocchi = new GnocchiAPI(cli.ip, cli.username, cli.password, cli.projectId, cli.domain);
