@@ -63,6 +63,7 @@ public class GnocchiAPI {
 		objectNode.put("processing_capacity", CliHelper.getCli().proccessing_capacity);
 		Response patch = gnocchiClient.path("resource/vnf").path(CliHelper.getCli().instance).request()
 									  .method("PATCH", Entity.json(objectNode));
+		logger.debug("Posted processing capacity: {} Mbits",CliHelper.getCli().proccessing_capacity);
 		return patch.getStatus();
 	}
 
