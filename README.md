@@ -1,4 +1,5 @@
 # VNF Simulator
+I suggest to copy in the folder where you will execute the application the log4j.properties file.
 
 For starting the services:
 ```sh
