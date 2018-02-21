@@ -22,8 +22,8 @@ public class GnocchiAPI {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	public GnocchiAPI(String host, String username, String password, String projectId, String domainName) {
-		String openstack_uri = "http://"+host+"/identity/v3";
-		String gnocchi_uri = "http://"+host+":8041/v1";
+		String openstack_uri = "http://" + host + "/identity/v3";
+		String gnocchi_uri = "http://" + host + ":8041/v1";
 		osAuth = new OSAuth(openstack_uri, username, password, projectId, domainName);
 		gnocchiClient = JerseyClientBuilder.createClient().target(gnocchi_uri).register(osAuth);
 	}
@@ -31,32 +31,43 @@ public class GnocchiAPI {
 	public void pushMeasurement(Measurement measurement) {
 		Entity body = createEntity(measurement);
 		Response resp;
-		resp = gnocchiClient.path("batch/resources/metrics/measures").queryParam("create_metrics","true").request().post(body);
-		if(resp.getStatus() > 400){
+		resp = gnocchiClient.path("batch/resources/metrics/measures").queryParam("create_metrics", "true").request()
+							.post(body);
+		if (resp.getStatus() > 400) {
 			logger.warn("Reauthenticating");
 			osAuth.authenticate();
-			resp = gnocchiClient.path("batch/resources/metrics/measures").queryParam("create_metrics","true").request().post(body);
+			resp = gnocchiClient.path("batch/resources/metrics/measures").queryParam("create_metrics", "true").request()
+								.post(body);
 		}
-		if(resp.getStatus()>210){
-			throw new RuntimeException("Error while adding measurement ("+resp.getStatus()+")");
-		}
-		else {
+		if (resp.getStatus() > 210) {
+			throw new RuntimeException("Error while adding measurement (" + resp.getStatus() + ")");
+		} else {
 			logger.debug(resp.toString());
 		}
 	}
 
-	public boolean checkIfInstanceExists(){
+	public boolean checkIfInstanceExists() {
 		try {
 			Response response = gnocchiClient.path("resource/vnf").path(CliHelper.getCli().instance).request().get();
-			return response.getStatus() == 200;
-		}
-		catch (ConnectionException e){
+			if (response.getStatus() != 200)
+				return false;
+			return patchProcessingCapacity() == 200;
+		} catch (ConnectionException e) {
 			logger.error(e.getMessage());
 		}
 		return false;
 	}
 
-	public void pushProcessingCapacity(){
+	private int patchProcessingCapacity() {
+		ObjectNode objectNode = mapper.createObjectNode();
+		objectNode.put("processing_capacity", CliHelper.getCli().proccessing_capacity);
+		Response patch = gnocchiClient.path("resource/vnf").path(CliHelper.getCli().instance).request()
+									  .method("PATCH", Entity.json(objectNode));
+		return patch.getStatus();
+	}
+
+
+	public void pushProcessingCapacity() {
 		Double proccessing_capacity = CliHelper.getCli().proccessing_capacity;
 		String instance = CliHelper.getCli().instance;
 		//http://192.168.9.121:8041/v1/resource/instance
@@ -66,13 +77,13 @@ public class GnocchiAPI {
 		Response resp = gnocchiClient.path("resource/vnf").path(instance).request().post(json);
 	}
 
-	private Entity createEntity(Measurement measurement){
+	private Entity createEntity(Measurement measurement) {
 		ObjectNode resources = mapper.createObjectNode();
 		ObjectNode resource = mapper.createObjectNode();
 		ArrayNode measurements = mapper.createArrayNode();
 		JsonNode measurementNode = mapper.convertValue(measurement, JsonNode.class);
 		measurements.add(measurementNode);
-		resource.set(CliHelper.getCli().metric,measurements);
+		resource.set(CliHelper.getCli().metric, measurements);
 		resources.set(CliHelper.getCli().instance, resource);
 		try {
 			logger.debug(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resources));
