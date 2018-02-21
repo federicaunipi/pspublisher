@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.glassfish.jersey.client.HttpUrlConnectorProvider;
 import org.glassfish.jersey.client.JerseyClientBuilder;
 import org.glassfish.jersey.client.JerseyWebTarget;
 import org.openstack4j.api.exceptions.ConnectionException;
@@ -26,17 +27,18 @@ public class GnocchiAPI {
 		String gnocchi_uri = "http://" + host + ":8041/v1";
 		osAuth = new OSAuth(openstack_uri, username, password, projectId, domainName);
 		gnocchiClient = JerseyClientBuilder.createClient().target(gnocchi_uri).register(osAuth);
+		gnocchiClient.property(HttpUrlConnectorProvider.SET_METHOD_WORKAROUND, true);
 	}
 
 	public void pushMeasurement(Measurement measurement) {
 		Entity body = createEntity(measurement);
 		Response resp;
-		resp = gnocchiClient.path("batch/resources/metrics/measures").queryParam("create_metrics", "true").request()
+		resp = gnocchiClient.path("batch/resources/metrics/measures").request()
 							.post(body);
 		if (resp.getStatus() > 400) {
 			logger.warn("Reauthenticating");
 			osAuth.authenticate();
-			resp = gnocchiClient.path("batch/resources/metrics/measures").queryParam("create_metrics", "true").request()
+			resp = gnocchiClient.path("batch/resources/metrics/measures").request()
 								.post(body);
 		}
 		if (resp.getStatus() > 210) {
@@ -61,9 +63,9 @@ public class GnocchiAPI {
 	private int patchProcessingCapacity() {
 		ObjectNode objectNode = mapper.createObjectNode();
 		objectNode.put("processing_capacity", CliHelper.getCli().proccessing_capacity);
+		logger.debug("Pushing processing capacity: {} Mbits",CliHelper.getCli().proccessing_capacity);
 		Response patch = gnocchiClient.path("resource/vnf").path(CliHelper.getCli().instance).request()
 									  .method("PATCH", Entity.json(objectNode));
-		logger.debug("Posted processing capacity: {} Mbits",CliHelper.getCli().proccessing_capacity);
 		return patch.getStatus();
 	}
 
