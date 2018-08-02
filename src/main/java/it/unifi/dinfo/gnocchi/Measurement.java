@@ -1,16 +1,34 @@
 package it.unifi.dinfo.gnocchi;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 public class Measurement {
 
+	private String name = "processing_time";
 	private LocalDateTime timestamp;
 	private Double value;
 
 	public Measurement(Double value) {
-		this.value = value;
+	}
+
+	public Measurement(String name, Double value) {
+		new Measurement(value);
+		this.name = name;
 		this.timestamp = LocalDateTime.now(ZoneId.of("UTC"));
+		this.value = value;
+	}
+
+	@JsonIgnore
+	public String getName() {
+		return name;
+	}
+
+	public Measurement setName(String name) {
+		this.name = name;
+		return this;
 	}
 
 	public Measurement() {

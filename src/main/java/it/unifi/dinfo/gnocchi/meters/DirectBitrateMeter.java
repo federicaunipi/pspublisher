@@ -36,6 +36,27 @@ public class DirectBitrateMeter implements BitrateMeter {
 		return bitrate;
 	}
 
+	@Override
+	public Double getPacketRate() {
+		long pktsRecv;
+		long pktsRecv2;
+		iface.updateNetworkStats();
+		pktsRecv = iface.getPacketsRecv();
+		long t1 = System.nanoTime();
+		try {
+			Thread.sleep(interval);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		iface.updateNetworkStats();
+		pktsRecv2 = iface.getPacketsRecv();
+		long t2 = System.nanoTime();
+		double delta = (t2 - t1) / Math.pow(10, 9);
+		double bitrate = (pktsRecv2 - pktsRecv) / delta;
+		logger.debug(String.valueOf(delta));
+		logger.info(scale(bitrate));
+		return bitrate;	}
+
 	public static String scale(double value) {
 		String[] suffix = {"B/s", "KB/s", "MB/s", "GB/s", "TB/s", "PB/s"};
 		int index;

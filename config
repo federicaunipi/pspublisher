@@ -1,8 +1,8 @@
 --iface
-"eth3"
---instance
-"53bf5c9e-6312-45a8-a43d-4f2c95f550ad"
+"ens3"
 --ip
-193.190.127.228
---project
-718e7376ed414b0eb7abd32ea2398a2c
+"10.10.5.11"
+--name
+"VF-TEST"
+--datacenter
+"VS-1"

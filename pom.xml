@@ -6,7 +6,7 @@
 
     <groupId>it.unifi.dinfo.gnocchi</groupId>
     <artifactId>pspublisher</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>2.0-SNAPSHOT</version>
     <dependencies>
         <dependency>
             <groupId>com.beust</groupId>
@@ -34,12 +34,6 @@
             <version>2.5.1</version>
         </dependency>
         <dependency>
-            <groupId>org.pacesys</groupId>
-            <artifactId>openstack4j</artifactId>
-            <version>3.1.0</version>
-            <classifier>withdeps</classifier>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
@@ -55,18 +49,64 @@
             <artifactId>jcabi-log</artifactId>
             <version>0.18</version>
         </dependency>
+        <dependency>
+            <groupId>org.pacesys</groupId>
+            <artifactId>openstack4j</artifactId>
+            <version>3.1.0</version>
+            <classifier>withdeps</classifier>
+        </dependency>
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <!-- Set the classpath and the main class -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>it.unifi.dinfo.gnocchi.Publisher</mainClass>
+                            <classpathPrefix>dependency/</classpathPrefix>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- Copy dependencies -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.5.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeScope>runtime</includeScope>
+                            <outputDirectory>${project.build.directory}/dependency/</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
 </project>
