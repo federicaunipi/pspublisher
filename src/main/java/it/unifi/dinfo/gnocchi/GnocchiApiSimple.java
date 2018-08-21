@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.http.client.HttpResponseException;
+import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.client.HttpUrlConnectorProvider;
 import org.glassfish.jersey.client.JerseyClientBuilder;
 import org.glassfish.jersey.client.JerseyWebTarget;
@@ -36,7 +37,9 @@ public class GnocchiApiSimple implements GnocchiAPI {
 	public GnocchiApiSimple(String host, String username, String password) {
 		HttpAuthenticationFeature authenticator = HttpAuthenticationFeature.basic(username, password);
 		String gnocchi_uri = "http://" + host + ":8041/v1";
-		gnocchiClient = JerseyClientBuilder.createClient().register(authenticator).target(gnocchi_uri);
+		gnocchiClient = JerseyClientBuilder.createClient().register(authenticator)
+										   .property(ClientProperties.CONNECT_TIMEOUT, 3000)
+										   .property(ClientProperties.READ_TIMEOUT, 3000).target(gnocchi_uri);
 		gnocchiClient.property(HttpUrlConnectorProvider.SET_METHOD_WORKAROUND, true);
 		try {
 			createResource();
@@ -56,14 +59,14 @@ public class GnocchiApiSimple implements GnocchiAPI {
 			measure.put("value", m.getValue());
 			measurements.add(measure);
 			metrics.set(m.getName(), measurements);
-			if(CliHelperLola.getCli().delay && m.getName().equals("processing_time")) {
+			if (CliHelperLola.getCli().delay && m.getName().equals("processing_time")) {
 				try {
-					trafficController.addDelay(m.getValue()*1000);
+					trafficController.addDelay(m.getValue() * 1000);
 				} catch (IOException e) {
-					logger.error("Error while setting delay: {}",e.getMessage());
+					logger.error("Error while setting delay: {}", e.getMessage());
 				}
 			}
-			logger.debug("{}: {}",m.getName(),m.getValue());
+			logger.debug("{}: {}", m.getName(), m.getValue());
 		}
 		root.set(id, metrics);
 		Entity<JsonNode> entity = Entity.json(root);
@@ -71,8 +74,6 @@ public class GnocchiApiSimple implements GnocchiAPI {
 		resp = gnocchiClient.path("batch/resources/metrics/measures").request().post(entity);
 		if (resp.getStatus() > 210) {
 			throw new RuntimeException("Error while adding measurement (" + resp.getStatus() + ")");
-		} else {
-			logger.debug(resp.getStatusInfo().toString());
 		}
 	}
 
@@ -85,8 +86,6 @@ public class GnocchiApiSimple implements GnocchiAPI {
 							.post(body);
 		if (resp.getStatus() > 210) {
 			throw new RuntimeException("Error while adding measurement (" + resp.getStatus() + ")");
-		} else {
-			logger.debug(resp.toString());
 		}
 	}
 
@@ -114,7 +113,7 @@ public class GnocchiApiSimple implements GnocchiAPI {
 		json.put("datacenter", CliHelperLola.getCli().datacenter);
 		json.put("capacity", CliHelperLola.getCli().capacity);
 		json.put("timestamp", formatter.format(new Date()));
-		json.put("id", String.format("%s.%s",CliHelperLola.getCli().name,CliHelperLola.getCli().datacenter));
+		json.put("id", String.format("%s.%s", CliHelperLola.getCli().name, CliHelperLola.getCli().datacenter));
 		ObjectNode metrics = mapper.createObjectNode();
 
 		ObjectNode processing_time = mapper.createObjectNode();
@@ -128,6 +127,10 @@ public class GnocchiApiSimple implements GnocchiAPI {
 		ObjectNode incoming_rate_pkts = mapper.createObjectNode();
 		incoming_rate_pkts.put("archive_policy_name", CliHelperLola.getCli().policy);
 		metrics.set("incoming_rate_pkts", incoming_rate_pkts);
+
+		ObjectNode cpuload = mapper.createObjectNode();
+		cpuload.put("archive_policy_name", CliHelperLola.getCli().policy);
+		metrics.set("cpu", cpuload);
 
 		json.set("metrics", metrics);
 		return Entity.json(json);

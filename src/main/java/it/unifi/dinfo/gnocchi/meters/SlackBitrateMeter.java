@@ -61,23 +61,19 @@ public class SlackBitrateMeter implements BitrateMeter {
 		double bitrate = (bytesRecv - latestBytesReceived) / delta;
 		latestBytesReceived = bytesRecv;
 		t1a = t2;
-		logger.debug(scale(bitrate));
 		return bitrate;
 	}
 
 	@Override
 	public Double getPacketRate() {
-		// Bits
+		iface.updateNetworkStats();
 		long pktsRecv = iface.getPacketsRecv();
-
-		// Bytes
-		//Long bytesRecv = iface.getBytesRecv();
 		long t2 = System.currentTimeMillis();
 		double delta = (t2 - t1b) / 1000;
 		double pktRate = (pktsRecv - latestPktsReceived) / delta;
+		logger.debug("{} {} {}",latestPktsReceived,pktsRecv,delta);
 		latestPktsReceived = pktsRecv;
 		t1b = t2;
-		logger.debug(pktRate+" pkts/s");
 		return pktRate;
 	}
 

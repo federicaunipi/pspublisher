@@ -35,8 +35,8 @@ public class Publisher {
 		TrafficController trafficController = new TrafficController();
 
 
-//		GnocchiAPI gnocchi = new GnocchiApiSimple(cli.ip, cli.username, cli.password);
-		GnocchiAPI gnocchi = new FakeGnocchiApi();
+		GnocchiAPI gnocchi = new GnocchiApiSimple(cli.ip, cli.username, cli.password);
+//		GnocchiAPI gnocchi = new FakeGnocchiApi();
 
 		//Instantiate the Bitrate Poller setting the interval and queried interface
 		BitrateMeter bitrateMeter = new SlackBitrateMeter(iface);
@@ -53,15 +53,13 @@ public class Publisher {
 			logger.info("First iteration, waiting " + cli.interval + "ms for gathering data");
 		}
 
-		Runtime.getRuntime().addShutdownHook(new Thread() {
-			public void run() {
-				try {
-					trafficController.stopDelay();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+			try {
+				trafficController.stopDelay();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		});
+		}));
 
 		//scheduler.scheduleAtFixedRate(() -> System.out.println(new Measurement(psMeter.getProcessingTime())), 0L, cli.interval, TimeUnit.MILLISECONDS);
 
